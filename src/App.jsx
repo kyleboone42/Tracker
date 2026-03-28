@@ -1,5 +1,5 @@
-import { useState, useEffect } from “react”;
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from “recharts”;
+import { useState, useEffect } from "react";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 
 const TARGET_WEIGHT = 180;
 const SPLITS = [“Chest”, “Back”, “Quads”, “Hamstrings”, “Shoulders”];
