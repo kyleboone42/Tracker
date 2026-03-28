@@ -73,7 +73,7 @@ const ChartTip = ({ active, payload, label }) => {
 if (!active || !payload?.length) return null;
 const d = payload[0]?.payload;
 return (
-<div style={{ background: C.elevated, border: `1px solid ${C.border}`, borderRadius: 4, padding: “10px 14px” }}>
+<div style={{ background: C.elevated, border: `1px solid ${C.border}`, borderRadius: 4, padding: "10px 14px" }}>
 <div style={{ fontSize: 10, color: C.muted, fontFamily: "‘Times New Roman’, serif", marginBottom: 4 }}>{label}</div>
 <div style={{ fontSize: 18, fontWeight: 700, color: C.red, fontFamily: "‘Times New Roman’, serif" }}>{payload[0].value} lbs</div>
 {d?.macrosOnTrack !== null && d?.macrosOnTrack !== undefined && (
