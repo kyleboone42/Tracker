@@ -121,7 +121,7 @@ const todayEntry = entries.find(e => e.date === today);
 
 const handleSave = () => {
 if (!form.weight) return;
-const entry = { date: today, ts: Date.now(), weight: parseFloat(form.weight), …form };
+const entry = { date: today, ts: Date.now(), weight: parseFloat(form.weight), ...form };
 const newEntries = […entries.filter(e => e.date !== today), entry].sort((a, b) => a.ts - b.ts);
 setEntries(newEntries);
 setSaved(true);
