@@ -2,24 +2,24 @@ import { useState, useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 
 const TARGET_WEIGHT = 180;
-const SPLITS = [“Chest”, “Back”, “Quads”, “Hamstrings”, “Shoulders”];
+const SPLITS = ["Chest", "Back", "Quads", "Hamstrings", "Shoulders"];
 
 const C = {
-bg:       “#080808”,
-surface:  “#111111”,
-elevated: “#1a1a1a”,
-border:   “#222222”,
-red:      “#c0392b”,
-redDim:   “#7a2318”,
-redGlow:  “#c0392b22”,
-text:     “#f0f0f0”,
-muted:    “#666666”,
-dim:      “#3a3a3a”,
-white:    “#ffffff”,
+bg:       "#080808",
+surface:  "#111111",
+elevated: "#1a1a1a",
+border:   "#222222",
+red:      "#c0392b",
+redDim:   "#7a2318",
+redGlow:  "#c0392b22",
+text:     "#f0f0f0",
+muted:    "#666666",
+dim:      "#3a3a3a",
+white:    "#ffffff",
 };
 
 const todayKey = () =>
-new Date().toLocaleDateString(“en-US”, { month: “short”, day: “numeric” });
+new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
 const MacroDot = (props) => {
 const { cx, cy, payload } = props;
@@ -74,45 +74,45 @@ if (!active || !payload?.length) return null;
 const d = payload[0]?.payload;
 return (
 <div style={{ background: C.elevated, border: `1px solid ${C.border}`, borderRadius: 4, padding: “10px 14px” }}>
-<div style={{ fontSize: 10, color: C.muted, fontFamily: “‘Times New Roman’, serif”, marginBottom: 4 }}>{label}</div>
-<div style={{ fontSize: 18, fontWeight: 700, color: C.red, fontFamily: “‘Times New Roman’, serif” }}>{payload[0].value} lbs</div>
+<div style={{ fontSize: 10, color: C.muted, fontFamily: "‘Times New Roman’, serif", marginBottom: 4 }}>{label}</div>
+<div style={{ fontSize: 18, fontWeight: 700, color: C.red, fontFamily: "‘Times New Roman’, serif" }}>{payload[0].value} lbs</div>
 {d?.macrosOnTrack !== null && d?.macrosOnTrack !== undefined && (
-<div style={{ fontSize: 11, marginTop: 4, fontFamily: “‘Times New Roman’, serif”, color: d.macrosOnTrack ? C.red : C.muted }}>
-Macros: {d.macrosOnTrack ? “Hit” : “Missed”}
+<div style={{ fontSize: 11, marginTop: 4, fontFamily: "‘Times New Roman’, serif", color: d.macrosOnTrack ? C.red : C.muted }}>
+Macros: {d.macrosOnTrack ? "Hit" : "Missed"}
 </div>
 )}
 </div>
 );
 };
 
-const Divider = () => <div style={{ height: 1, background: C.border, margin: “4px 0” }} />;
+const Divider = () => <div style={{ height: 1, background: C.border, margin: "4px 0" }} />;
 
 const Tab = ({ id, label, view, setView }) => (
 <button onClick={() => setView(id)} style={{
-background: “transparent”, border: “none”,
+background: "transparent", border: "none",
 borderBottom: `2px solid ${view === id ? C.red : "transparent"}`,
 color: view === id ? C.white : C.muted,
-padding: “12px 24px”, fontSize: 11, fontWeight: view === id ? 700 : 400,
-cursor: “pointer”, textTransform: “uppercase”, letterSpacing: “0.18em”,
-fontFamily: “‘Times New Roman’, serif”, transition: “all 0.2s”,
+padding: "12px 24px", fontSize: 11, fontWeight: view === id ? 700 : 400,
+cursor: "pointer", textTransform: "uppercase", letterSpacing: "0.18em",
+fontFamily: "‘Times New Roman’, serif", transition: "all 0.2s",
 }}>{label}</button>
 );
 
 export default function App() {
 const [entries, setEntries] = useState(() => {
-try { return JSON.parse(localStorage.getItem(“kyle-tracker-v3”) || “[]”); }
+try { return JSON.parse(localStorage.getItem("kyle-tracker-v3") || "[]"); }
 catch { return []; }
 });
-const [view,        setView]        = useState(“log”);
+const [view,        setView]        = useState("log");
 const [saved,       setSaved]       = useState(false);
-const [importMsg,   setImportMsg]   = useState(””);
+const [importMsg,   setImportMsg]   = useState("");
 const [form, setForm] = useState({
-weight: “”, macrosOnTrack: null, trained: null,
-muscleGroup: “”, energy: null, sleep: null, hunger: null, gymPerf: null,
+weight: "", macrosOnTrack: null, trained: null,
+muscleGroup: "", energy: null, sleep: null, hunger: null, gymPerf: null,
 });
 
 useEffect(() => {
-try { localStorage.setItem(“kyle-tracker-v3”, JSON.stringify(entries)); }
+try { localStorage.setItem("kyle-tracker-v3", JSON.stringify(entries)); }
 catch {}
 }, [entries]);
 
@@ -130,11 +130,11 @@ setTimeout(() => setSaved(false), 2200);
 
 const handleExport = () => {
 if (!entries.length) return;
-const blob = new Blob([JSON.stringify(entries, null, 2)], { type: “application/json” });
+const blob = new Blob([JSON.stringify(entries, null, 2)], { type: "application/json" });
 const url  = URL.createObjectURL(blob);
-const a    = document.createElement(“a”);
+const a    = document.createElement("a");
 a.href     = url;
-a.download = “kyle-tracker-backup.json”;
+a.download = "kyle-tracker-backup.json";
 a.click();
 URL.revokeObjectURL(url);
 };
@@ -149,17 +149,17 @@ const data = JSON.parse(ev.target.result);
 if (Array.isArray(data)) {
 const sorted = data.sort((a, b) => a.ts - b.ts);
 setEntries(sorted);
-localStorage.setItem(“kyle-tracker-v3”, JSON.stringify(sorted));
-setImportMsg(“Restored”);
-setTimeout(() => setImportMsg(””), 2500);
+localStorage.setItem("kyle-tracker-v3", JSON.stringify(sorted));
+setImportMsg("Restored");
+setTimeout(() => setImportMsg(""), 2500);
 }
 } catch {
-setImportMsg(“Invalid file”);
-setTimeout(() => setImportMsg(””), 2500);
+setImportMsg("Invalid file");
+setTimeout(() => setImportMsg(""), 2500);
 }
 };
 reader.readAsText(file);
-e.target.value = “”;
+e.target.value = "";
 };
 
 const last7           = entries.slice(-7);
@@ -175,21 +175,21 @@ const chartMax        = chartWeights.length ? Math.ceil(Math.max(…chartWeights
 
 const inp = {
 background: C.elevated, border: `1px solid ${C.border}`, borderRadius: 4,
-color: C.text, fontSize: 16, padding: “14px 16px”, width: “100%”,
-fontFamily: “‘Times New Roman’, serif”, outline: “none”,
-boxSizing: “border-box”, letterSpacing: “0.04em”, transition: “border-color 0.2s”,
+color: C.text, fontSize: 16, padding: "14px 16px", width: "100%",
+fontFamily: "‘Times New Roman’, serif", outline: "none",
+boxSizing: "border-box", letterSpacing: "0.04em", transition: "border-color 0.2s",
 };
 
 const backupBtnStyle = {
-flex: 1, background: “transparent”, border: `1px solid ${C.border}`,
-borderRadius: 4, padding: “12px”, fontSize: 11, color: C.muted,
-fontFamily: “‘Times New Roman’, serif”, letterSpacing: “0.15em”,
-textTransform: “uppercase”, textAlign: “center”, cursor: “pointer”,
-transition: “all 0.2s”, display: “block”,
+flex: 1, background: "transparent", border: `1px solid ${C.border}`,
+borderRadius: 4, padding: "12px", fontSize: 11, color: C.muted,
+fontFamily: "‘Times New Roman’, serif", letterSpacing: "0.15em",
+textTransform: "uppercase", textAlign: "center", cursor: "pointer",
+transition: "all 0.2s", display: "block",
 };
 
 return (
-<div style={{ minHeight: “100vh”, background: C.bg, color: C.text, fontFamily: “‘Times New Roman’, serif”, paddingBottom: 80 }}>
+<div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: "‘Times New Roman’, serif", paddingBottom: 80 }}>
 
 ```
   {/* HEADER */}
