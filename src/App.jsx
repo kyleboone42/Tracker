@@ -166,12 +166,12 @@ const last7           = entries.slice(-7);
 const avgWeight       = last7.length ? (last7.reduce((s, e) => s + e.weight, 0) / last7.length).toFixed(1) : null;
 const macroPool       = entries.filter(e => e.macrosOnTrack !== null);
 const macroCompliance = macroPool.length ? Math.round((macroPool.filter(e => e.macrosOnTrack).length / macroPool.length) * 100) : null;
-const streak          = (() => { let s = 0; for (const e of […entries].reverse()) { if (e.macrosOnTrack) s++; else break; } return s; })();
+const streak          = (() => { let s = 0; for (const e of [...entries].reverse()) { if (e.macrosOnTrack) s++; else break; } return s; })();
 const toTarget        = avgWeight ? Math.max(0, parseFloat(avgWeight) - TARGET_WEIGHT).toFixed(1) : null;
 const chartEntries    = entries.slice(-7);
 const chartWeights    = chartEntries.map(e => e.weight);
-const chartMin        = chartWeights.length ? Math.floor(Math.min(…chartWeights, TARGET_WEIGHT) - 3) : 170;
-const chartMax        = chartWeights.length ? Math.ceil(Math.max(…chartWeights) + 3) : 195;
+const chartMin        = chartWeights.length ? Math.floor(Math.min(...chartWeights, TARGET_WEIGHT) - 3) : 170;
+const chartMax        = chartWeights.length ? Math.ceil(Math.max(...chartWeights) + 3) : 195;
 
 const inp = {
 background: C.elevated, border: `1px solid ${C.border}`, borderRadius: 4,
