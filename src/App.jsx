@@ -163,7 +163,7 @@ e.target.value = "";
 };
 
 const last7           = entries.slice(-7);
-const avgWeight       = last7.length ? (last7.reduce((s, e) => s + e.weight, 0) / last7.length).toFixed(1) : null;
+const avgWeight       = last7.length ? (last7.reduce((s, e) => s + parseFloat(e.weight), 0) / last7.length).toFixed(1) : null;
 const macroPool       = entries.filter(e => e.macrosOnTrack !== null);
 const macroCompliance = macroPool.length ? Math.round((macroPool.filter(e => e.macrosOnTrack).length / macroPool.length) * 100) : null;
 const streak          = (() => { let s = 0; for (const e of [...entries].reverse()) { if (e.macrosOnTrack) s++; else break; } return s; })();
