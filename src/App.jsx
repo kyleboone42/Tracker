@@ -215,13 +215,13 @@ boxSizing: "border-box", letterSpacing: "0.04em", transition: "border-color 0.2s
 
 const dateInp = {
 background: C.elevated, border: `1px solid ${C.border}`, borderRadius: 4,
-color: C.text, fontSize: 15, padding: “12px 14px”,
-fontFamily: “‘Times New Roman’, serif”, outline: “none”,
-colorScheme: “dark”, width: “100%”, boxSizing: “border-box”,
+color: C.text, fontSize: 15, padding: "12px 14px",
+fontFamily: "‘Times New Roman’, serif", outline: "none",
+colorScheme: "dark", width: "100%", boxSizing: "border-box",
 };
 
 return (
-<div style={{ minHeight: “100vh”, background: C.bg, color: C.text, fontFamily: “‘Times New Roman’, serif”, paddingBottom: 80 }}>
+<div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: "‘Times New Roman’, serif", paddingBottom: 80 }}>
 
 ```
   {/* HEADER */}
