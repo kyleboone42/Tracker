@@ -1,26 +1,26 @@
-import { useState, useEffect } from “react”;
+import { useState, useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from “recharts”;
 
-const SPLITS = [“Chest”, “Back”, “Quads”, “Hamstrings”, “Shoulders”];
+const SPLITS = ["Chest", "Back", "Quads", "Hamstrings", "Shoulders"];
 
 const C = {
-bg:       “#080808”,
-surface:  “#111111”,
-elevated: “#1a1a1a”,
-border:   “#222222”,
-red:      “#c0392b”,
-redDim:   “#7a2318”,
-redGlow:  “#c0392b22”,
-text:     “#f0f0f0”,
-muted:    “#666666”,
-dim:      “#3a3a3a”,
-white:    “#ffffff”,
+bg:       "#080808",
+surface:  "#111111",
+elevated: "#1a1a1a",
+border:   "#222222",
+red:      "#c0392b",
+redDim:   "#7a2318",
+redGlow:  "#c0392b22",
+text:     "#f0f0f0",
+muted:    "#666666",
+dim:      "#3a3a3a",
+white:    "#ffffff",
 };
 
 const dateToKey = (isoDate) =>
-new Date(isoDate + “T12:00:00”).toLocaleDateString(“en-US”, { month: “short”, day: “numeric” });
+new Date(isoDate + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
-const todayISO = () => new Date().toISOString().split(“T”)[0];
+const todayISO = () => new Date().toISOString().split("T")[0];
 
 const MacroDot = (props) => {
 const { cx, cy, payload } = props;
